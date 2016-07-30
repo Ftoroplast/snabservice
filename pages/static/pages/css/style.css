@@ -1,0 +1,111 @@
+@font-face {
+  font-family: "ClearSans Regular";
+  font-weight: 400;
+  font-style: normal;
+
+  src: url("../fonts/ClearSans-Regular.ttf");
+}
+
+@font-face {
+  font-family: "ClearSans Light";
+  font-weight: 300;
+  font-style: normal;
+
+  src: url("../fonts/ClearSans-Light.ttf");
+}
+
+@font-face {
+  font-family: "ClearSans Bold";
+  font-weight: 700;
+  font-style: normal;
+
+  src: url("../fonts/ClearSans-Bold.ttf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  font-weight: 400;
+}
+
+.container {
+  width: 1200px;
+  padding: 0 50px;
+  margin: 0 auto;
+}
+
+.logo {
+  float: left;
+  width: 150px;
+}
+
+.clearfix {
+  display: table;
+  width: 100%;
+  clear: both;
+}
+
+.menu {
+  float: right;
+  list-style: none;
+}
+
+.menu__item {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.menu__modal-window {
+  display: none;
+}
+
+.page-title {
+  text-align: center;
+}
+
+.contacts__list {
+  margin-left: 350px;
+  list-style: none;
+}
+
+.callback__link {
+  display: block;
+  text-align: center;
+}
+
+.requisites__list {
+  list-style: none;
+}
+
+.callback__title {
+  text-align: center;
+}
+
+form {
+  margin-left: 250px;
+}
+
+label {
+  display: block;
+}
+
+.btn--callback {
+  display: block;
+}
+
+.application__title {
+  text-align: center;
+}
+
+.goods__menu {
+  float: left;
+  list-style: none;
+}
+
+.goods__section {
+  float: right;
+}

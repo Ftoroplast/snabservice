@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>SnabService - вакансии</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Play&subset=latin,cyrillic">
+  <link rel="stylesheet" href="/static/pages/css/style.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav class="clearfix">
+        <div class="logo">
+          <img src="/static/pages/img/header__logo.png" width="124" height="28" alt="CнабСервис. Трейдинговая компания.">
+        </div>
+        <ul class="menu">
+          <li class="menu__item">
+            <a class="menu__link" href="/">Главная</a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link menu__link--services" href="/sales/">Услуги</a>
+            <ul class="menu__modal-window">
+              <li class="menu__item menu__item--modal-window">
+                <a class="menu__link menu__link--modal-window" href="/purchases/">Покупаем металлолом</a>
+              </li>
+              <li class="menu__item menu__item--modal-window">
+                <a class="menu__link menu__link--modal-window" href="/sales/">Продаём металлические изделия</a>
+              </li>
+            </ul>
+          </li>
+          <li class="menu__item menu__item--active">
+            <a class="menu__link" href="/vacancies/">Вакансии</a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link" href="/contacts/">Контакты</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="vacancies">
+      <div class="container">
+        <h1 class="page-title page-title--vacancies">Вакансии, актуальные на данный момент:</h1>
+        {% for vacancie in vacancies %}
+          <section class="vacancie">
+            <h2 class="vacancie__position">{{ vacancie.position }}</h2>
+            <ul class="vacancie__parameters">
+              <li class="vacancie__parameter">
+                <span class="vacancie__key">График:</span>
+                <span class="vacancie__value">{{ vacancie.schedule }}</span>
+              </li>
+              <li class="vacancie__parameter">
+                <span class="vacancie__key">Обязанности:</span>
+                <span class="vacancie__value">{{ vacancie.responsibility }}</span>
+              </li>
+              <li class="vacancie__parameter">
+                <span class="vacancie__key">Место работы:</span>
+                <span class="vacancie__value">{{ vacancie.work_place }}</span>
+              </li>
+              <li class="vacancie__parameter">
+                <span class="vacancie__key">Зарплата:</span>
+                <span class="vacancie__value">{{ vacancie.salary }}</span>
+              </li>
+            </ul>
+          </section>
+        {% endfor %}
+      </div>
+    </section>
+    <section class="form-section form-section--application">
+      <div class="container">
+        <h2 class="form-section__title">Оформление заявки на работу</h2>
+        <form class="form-section__form form-section__form--application" action="send-form.html" method="POST">
+          <label class="form__label form__label--last-name" for="last-name">
+            <span class="form__text form__text--last-name">Фамилия *</span>
+            <input class="form__input form__input--last-name" id="last-name" type="text">
+          </label>
+          <label class="form__label form__label--first-name" for="first-name">
+            <span class="form__text form__text--first-name">Имя *</span>
+            <input class="form__input form__input--first-name" id="first-name" type="text">
+          </label>
+          <label class="form__label form__label--patronym" for="patronym">
+            <span class="form__text form__text--patronym">Отчество *</span>
+            <input class="form__input form__input--patronym" id="patronym" type="text">
+          </label>
+          <label class="form__label form__label--phone" for="phone">
+            <span class="form__text form__text--phone">Телефон *</span>
+            <input class="form__input form__input--phone" id="phone" type="text">
+          </label>
+          <label class="form__label form__label--email" for="email">
+            <span class="form__text form__text--email">E-mail *</span>
+            <input class="form__input form__input--email" id="email" type="text">
+          </label>
+          <label class="form__label form__label--city" for="city">
+            <span class="form__text form__text--city">Город</span>
+            <input class="form__input form__input--city" id="city" type="text">
+          </label>
+          <label class="form__label form__label--street" for="street">
+            <span class="form__text form__text--street">Улица</span>
+            <input class="form__input form__input--street" id="street" type="text">
+          </label>
+          <label class="form__label form__label--vacancie" for="vacancie">
+            <span class="form__text form__text--vacancie">Вакансия *</span>
+            <select class="form__input form__input--vacancie" id="vacancie">
+              {% for vacancie in vacancies %}
+                <option value="{{ vacancie.position }}">{{ vacancie.position }}</option>
+              {% endfor %}
+            </select>
+          </label>
+          <label class="form__label form__label--message" for="message">
+            <span class="form__text form__text--message">Сообщение</span>
+            <textarea class="form__input form__input--message" id="message"></textarea>
+          </label>
+          <label class="form__label form__label--documents" for="file">
+            <span class="form__text form__text--documents">Добавить файл</span>
+            <input class="form__input form__input--documents" id="file" type="file">
+            <div class="form__input form__input--file"></div>
+          </label>
+          <input class="btn btn--application" type="submit" value="Отправить">
+        </form>
+      </div>
+    </section>
+  </main>
+</body>
+<footer>
+  <div class="container">
+    <section class="copyright">
+      <p class="copyright__text">ООО “СнабСервис” 2016</p>
+    </section>
+  </div>
+</footer>
+</html>

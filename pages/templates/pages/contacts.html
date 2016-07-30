@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>SnabService - контакты</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Play&subset=latin,cyrillic">
+  <link rel="stylesheet" href="/static/pages/css/style.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav class="clearfix">
+        <div class="logo">
+          <img src="/static/pages/img/header__logo.png" width="124" height="28" alt="CнабСервис. Трейдинговая компания.">
+        </div>
+        <ul class="menu">
+          <li class="menu__item">
+            <a class="menu__link" href="/">Главная</a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link menu__link--services" href="/sales/">Услуги</a>
+            <ul class="menu__modal-window">
+              <li class="menu__item menu__item--modal-window">
+                <a class="menu__link menu__link--modal-window" href="/purchases/">Покупаем металлолом</a>
+              </li>
+              <li class="menu__item menu__item--modal-window">
+                <a class="menu__link menu__link--modal-window" href="/sales/">Продаём металлические изделия</a>
+              </li>
+            </ul>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link" href="/vacancies/">Вакансии</a>
+          </li>
+          <li class="menu__item menu__item--active">
+            <a class="menu__link" href="/contacts/">Контакты</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="contacts">
+      <div class="container">
+        <h1 class="page-title page-title--contacts">Контактная информация</h1>
+        <ul class="contacts__list">
+          <li class="contacts__item">
+            <span class="contacts__key">Телефон:</span>
+            <a class="contacts__value" href="tel:88615041618">8 (86 150) 4 16 18</a>
+          </li>
+          <li class="contacts__item">
+            <span class="contacts__key">E-mail:</span>
+            <a class="contacts__value" href="mailto:snabservis_llc@mail.ru">snabservis_llc@mail.ru</a>
+          </li>
+        </ul>
+        <a class="callback__link" href="#callback">Форма обратной связи</a>
+      </div>
+    </section>
+    <section class="requisites">
+      <div class="container">
+        <h2 class="requisites__title">Отгрузочные реквизиты завода ООО “АЭМЗ”</h2>
+        <ul class="requisites__list">
+          <li class="requisites__item">
+            <span class="requisites__key">Производственная база:</span>
+            <span class="requisites__value">353320, Краснодарский край, г. Абинск, ул. Промышленная, 4</span>
+          </li>
+          <li class="requisites__item">
+            <span class="requisites__key">Ж/Д Станция:</span>
+            <span class="requisites__value">ст. Абинск, СК ж/д</span>
+          </li>
+          <li class="requisites__item">
+            <span class="requisites__key">Код станции:</span>
+            <span class="requisites__value">52 35 05</span>
+          </li>
+          <li class="requisites__item">
+            <span class="requisites__key">Получатель:</span>
+            <span class="requisites__value">ООО “СнабСервис”</span>
+          </li>
+          <li class="requisites__item">
+            <span class="requisites__key">Код получателя:</span>
+            <span class="requisites__value">66 95</span>
+          </li>
+        </ul>
+        <div class="map" id="map"></div>
+      </div>
+    </section>
+    <section class="callback" id="callback">
+      <div class="container">
+        <h2 class="callback__title">Форма обратной связи</h2>
+        <form class="callback__form" action="send-callback.html" method="POST">
+          <label class="callback__label" for="name">
+            Имя *
+            <input class="callback__input" id="name" type="text">
+          </label>
+          <label class="callback__label" for="phone">
+            Телефон
+            <input class="callback__input" id="phone" type="text">
+          </label>
+          <label class="callback__label" for="email">
+            E-mail *
+            <input class="callback__input" id="email" type="email">
+          </label>
+          <label class="callback__label" for="message">
+            Сообщение
+            <textarea class="callback__input" id="message"></textarea>
+          </label>
+          <input class="btn btn--callback" type="submit" value="Отправить">
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="container">
+      <section class="copyright">
+        <p class="copyright__text">ООО “СнабСервис” 2016</p>
+      </section>
+    </div>
+  </footer>
+</body>
+</html>
