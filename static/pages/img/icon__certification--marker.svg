@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="51" height="66" viewBox="0 0 51 66">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #292b30;
+        stroke-width: 1px;
+      }
+    </style>
+  </defs>
+  <rect id="icon" class="cls-1" x="0.5" y="0.5" width="50" height="65" rx="4" ry="4"/>
+</svg>

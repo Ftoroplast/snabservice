@@ -13,7 +13,7 @@
     <div class="container">
       <nav class="clearfix">
         <div class="logo">
-          <img src="/static/pages/img/header__logo.png" width="124" height="28" alt="CнабСервис. Трейдинговая компания.">
+          <img src="/static/pages/img/logo__header--snabservice.png" width="124" height="28" alt="CнабСервис. Трейдинговая компания.">
         </div>
         <ul class="menu">
           <li class="menu__item">
@@ -41,17 +41,17 @@
     </div>
   </header>
   <main>
-    <section class="contacts">
+    <section class="contacts-info">
       <div class="container">
-        <h1 class="page-title page-title--contacts">Контактная информация</h1>
-        <ul class="contacts__list">
-          <li class="contacts__item">
-            <span class="contacts__key">Телефон:</span>
-            <a class="contacts__value" href="tel:88615041618">8 (86 150) 4 16 18</a>
+        <h1 class="page-title page-title--contacts-info">Контактная информация</h1>
+        <ul class="contacts-info__list">
+          <li class="contacts-info__item">
+            <span class="contacts-info__key">Телефон:</span>
+            <a class="contacts-info__value" href="tel:88615041618">8 (86 150) 4 16 18</a>
           </li>
-          <li class="contacts__item">
-            <span class="contacts__key">E-mail:</span>
-            <a class="contacts__value" href="mailto:snabservis_llc@mail.ru">snabservis_llc@mail.ru</a>
+          <li class="contacts-info__item">
+            <span class="contacts-info__key">E-mail:</span>
+            <a class="contacts-info__value" href="mailto:snabservis_llc@mail.ru">snabservis_llc@mail.ru</a>
           </li>
         </ul>
         <a class="callback__link" href="#callback">Форма обратной связи</a>
@@ -63,7 +63,7 @@
         <ul class="requisites__list">
           <li class="requisites__item">
             <span class="requisites__key">Производственная база:</span>
-            <span class="requisites__value">353320, Краснодарский край, г. Абинск, ул. Промышленная, 4</span>
+            <span class="requisites__value">353320, Краснодарский край, г.&nbsp;Абинск, ул. Промышленная, 4</span>
           </li>
           <li class="requisites__item">
             <span class="requisites__key">Ж/Д Станция:</span>
@@ -85,25 +85,25 @@
         <div class="map" id="map"></div>
       </div>
     </section>
-    <section class="callback" id="callback">
+    <section class="form-section form-section--callback" id="callback">
       <div class="container">
-        <h2 class="callback__title">Форма обратной связи</h2>
-        <form class="callback__form" action="send-callback.html" method="POST">
-          <label class="callback__label" for="name">
-            Имя *
-            <input class="callback__input" id="name" type="text">
+        <h2 class="form-section__title">Форма обратной связи</h2>
+        <form class="form-section__form form-section__form--callback" action="send-callback.html" method="POST">
+          <label class="form__label form__label--first-name" for="name">
+            <span class="form__text form__text--first-name">Имя *</span>
+            <input class="form__input" id="name" type="text">
           </label>
-          <label class="callback__label" for="phone">
-            Телефон
-            <input class="callback__input" id="phone" type="text">
+          <label class="form__label form__label--phone" for="phone">
+            <span class="form__text form__text--phone">Телефон</span>
+            <input class="form__input" id="phone" type="text">
           </label>
-          <label class="callback__label" for="email">
-            E-mail *
-            <input class="callback__input" id="email" type="email">
+          <label class="form__label form__label--email" for="email">
+            <span class="form__text form__text--email">E-mail *</span>
+            <input class="form__input" id="email" type="email">
           </label>
-          <label class="callback__label" for="message">
-            Сообщение
-            <textarea class="callback__input" id="message"></textarea>
+          <label class="form__label form__label--message" for="message">
+            <span class="form__text form__text--message">Сообщение</span>
+            <textarea class="form__input" id="message" rows="5"></textarea>
           </label>
           <input class="btn btn--callback" type="submit" value="Отправить">
         </form>
@@ -111,11 +111,37 @@
     </section>
   </main>
   <footer>
-    <div class="container">
-      <section class="copyright">
-        <p class="copyright__text">ООО “СнабСервис” 2016</p>
-      </section>
-    </div>
+    <section class="contacts">
+      <div class="container clearfix">
+        <ul class="contacts__list contacts__list--main">
+          <li class="contacts__item contacts__item--main">
+            <span class="contacts__key contacts__key--main">Телефон:</span>
+            <a class="contacts__value contacts__value--main" href="tel:88615041618">8 (86 150) 4 16 18</a>
+          </li>
+          <li class="contacts__item contacts__item--main">
+            <span class="contacts__key contacts__key--main">E-mail:</span>
+            <a class="contacts__value contacts__value--main" href="mailto:snabservis_llc@mail.ru">snabservis_llc@mail.ru</a>
+          </li>
+        </ul>
+        <ul class="contacts__list contacts__list--links">
+          <li class="contacts__item contacts__item--links">
+            <a class="contacts__link" href="#">Реквизиты ООО “СнабСервис”</a>
+          </li>
+          <li class="contacts__item contacts__item--links">
+            <a class="contacts__link" href="#">Лицензия ООО “СнабСервис”</a>
+          </li>
+          <li class="contacts__item contacts__item--links">
+            <a class="contacts__link" href="#">Договор на поставку сырья</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section class="copyright">
+      <div class="container clearfix">
+        <p class="copyright__text copyright__text--snabservice">ООО “СнабСервис” 2016. Все права защищены.</p>
+        <p class="copyright__text copyright__text--julo">разработано <a class="copyright__text--julo-title" href="http://startjulo.ru/" target="blank_">Julo</a></p>
+      </div>
+    </section>
   </footer>
 </body>
 </html>

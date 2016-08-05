@@ -13,7 +13,7 @@
     <div class="container">
       <nav class="clearfix">
         <div class="logo">
-          <img src="/static/pages/img/header__logo.png" width="124" height="28" alt="CнабСервис. Трейдинговая компания.">
+          <img src="/static/pages/img/logo__header--snabservice.png" width="124" height="28" alt="CнабСервис. Трейдинговая компания.">
         </div>
         <ul class="menu">
           <li class="menu__item">
@@ -42,7 +42,7 @@
   </header>
   <main>
     <div class="container">
-      <h1 class="page-title page-title--services">
+      <h1 class="page-title page-title--services page-title--sales">
         <p class="page-title__goods-type">Ознакомьтесь с ассортиментом металлопродукции</p>
         <p class="page-title__manufacturer">Производства завода “АЭМЗ”</p>
       </h1>
@@ -70,7 +70,7 @@
             <li class="about__item about__item--certification">
               <a class="about__link about__link--certification" href="#">
                 <div class="about__picture about__picture--certification">
-                  <img src="" alt="">
+                  <img src="/static/pages/img/icon__certification--marker.svg" width="51" height="66" alt="">
                 </div>
                 <p class="about__text about__text--certification">
                   Сертификат соответствия A - I (A240)
@@ -80,7 +80,7 @@
             <li class="about__item about__item--certification">
               <a class="about__link about__link--certification" href="#">
                 <div class="about__picture about__picture--certification">
-                  <img src="" alt="">
+                  <img src="/static/pages/img/icon__certification--marker.svg" width="51" height="66" alt="">
                 </div>
                 <p class="about__text about__text--certification">
                   Сертификат соответствия АТ800 и АТ1000 ГОСТ 10884-94 (10-16 мм)
@@ -90,7 +90,7 @@
             <li class="about__item about__item--certification">
               <a class="about__link about__link--certification" href="#">
                 <div class="about__picture about__picture--certification">
-                  <img src="" alt="">
+                  <img src="/static/pages/img/icon__certification--marker.svg" width="51" height="66" alt="">
                 </div>
                 <p class="about__text about__text--certification">
                   Сертификат соответствия A500C ГОСТ Р52544-2006 (8-25 мм)
@@ -100,7 +100,7 @@
             <li class="about__item about__item--certification">
               <a class="about__link about__link--certification" href="#">
                 <div class="about__picture about__picture--certification">
-                  <img src="" alt="">
+                  <img src="/static/pages/img/icon__certification--marker.svg" width="51" height="66" alt="">
                 </div>
                 <p class="about__text about__text--certification">
                   Сертификат соответствия A500C ГОСТ Р52544-2006 (8-25 мм)
@@ -110,7 +110,7 @@
             <li class="about__item about__item--certification">
               <a class="about__link about__link--certification" href="#">
                 <div class="about__picture about__picture--certification">
-                  <img src="" alt="">
+                  <img src="/static/pages/img/icon__certification--marker.svg" width="51" height="66" alt="">
                 </div>
                 <p class="about__text about__text--certification">
                   Сертификат соответствия A500C ГОСТ Р52544-2006 (28-40 мм)
@@ -119,7 +119,7 @@
             </li>
             <li class="about__item about__item--certification"><a href="" class="about__link about__link--certification">
                 <div class="about__picture about__picture--certification">
-                  <img src="" alt="">
+                  <img src="/static/pages/img/icon__certification--marker.svg" width="51" height="66" alt="">
                 </div>
                 <p class="about__text about__text--certification">
                   Сертификат соответствия СТО АСЧМ 7-93 8-14 мм и 16-25 мм
@@ -180,14 +180,14 @@
                         <th class="goods__header"></th>
                       {% endif %}
                       {% if title == "Арматура" or title == "Катанка" %}
-                        <th class="goods__header">Диаметр</th>
+                        <th class="goods__header">Диаметр, мм</th>
                       {% endif %}
                       {% if title == "Арматура" %}
-                        <th class="goods__header">Длина</th>
+                        <th class="goods__header">Длина, м</th>
                       {% endif %}
-                      <th class="goods__header">Цена за тонну</th>
-                      <th class="goods__header">Количество</th>
-                      <th class="goods__header">Сумма</th>
+                      <th class="goods__header">Цена за тонну, Р</th>
+                      <th class="goods__header">Количество, т</th>
+                      <th class="goods__header">Сумма, Р</th>
                     </tr>
                   {% endifchanged %}
                   {% regroup category.products by shape as shape_list %}
@@ -200,18 +200,25 @@
                         {% endifchanged %}
                       {% endif %}
                       {% if title == "Арматура" or title == "Катанка" %}
-                        <td class="goods__parameter goods__parameter--diameter">{{ product.diameter }} мм</td>
+                        <td class="goods__parameter goods__parameter--diameter">{{ product.diameter }}</td>
                       {% endif %}
                       {% if title == "Арматура" %}
-                        <td class="goods__parameter goods__parameter--length">{{ product.length }} м</td>
+                        <td class="goods__parameter goods__parameter--length">
+                          {% if product.length %}
+                            {{ product.length }}
+                          {% else %}
+                            - - -
+                          {% endif %}</td>
                       {% endif %}
-                      <td class="goods__parameter goods__parameter--price">{{ product.price }} Р</td>
+                      <td class="goods__parameter goods__parameter--price">{{ product.price }}</td>
                       <td class="goods__parameter goods__parameter--amount">
-                        <div class="goods__value goods__value--amount">0 т.</div>
+                        <div class="goods__value goods__value--amount">
+                          <input class="form__input form__input--amount" name="{{ product.pk }}_amount" type="text" value="0" disabled>
+                        </div>
                         <div class="goods__arrow goods__arrow--up"></div>
                         <div class="goods__arrow goods__arrow--down"></div>
                       </td>
-                      <td class="goods__parameter goods__parameter--sum">---</td>
+                      <td class="goods__parameter goods__parameter--sum">- - -</td>
                    </tr>
                    {% endfor %}
                  {% endfor %}
@@ -226,34 +233,50 @@
     <section class="form-section form-section--order">
       <div class="container">
         <h2 class="form-section__title">Оформление заказа</h2>
-        <form class="form-section__form form-section__form--order" action="services__sale.html" method="POST">
+        <div class="cart">
+          <h3 class="cart__title">Выбранные позиции:</h3>
+        </div>
+        <form class="form-section__form form-section__form--order" action="/sales/" method="POST">
+          {% csrf_token %}
           <label class="form__label form__label--last-name" for="last-name">
             <span class="form__text form__text--last-name">Фамилия *</span>
-            <input class="form__input form__input--last-name" id="last-name" name="last_name" type="text" required>
+            <input class="form__input form__input--last-name" id="last-name" name="last_name" type="text">
           </label>
           <label class="form__label form__label--first-name" for="first-name">
             <span class="form__text form__text--first-name">Имя *</span>
-            <input class="form__input form__input--first-name" id="first-name" name="first_name" type="text" required>
+            <input class="form__input form__input--first-name" id="first-name" name="first_name" type="text">
           </label>
           <label class="form__label form__label--patronym" for="patronym">
             <span class="form__text form__text--patronym">Отчество *</span>
-            <input class="form__input form__input--patronym" id="patronym" name="patronym" type="text" required>
+            <input class="form__input form__input--patronym" id="patronym" name="patronym" type="text">
           </label>
           <label class="form__label form__label--delivery" for="delivery">
             <span class="form__text form__text--delivery">Доставка *</span>
-            <select class="form__input form__input--delivery" id="delivery" name="delivery_type" required>
+            <select class="form__input form__input--delivery" id="delivery" name="delivery_type">
               <option value="Самовывозом">Самовывозом</option>
               <option value="Железной дорогой">Железной дорогой</option>
               <option value="Автотранспортом">Автотранспортом</option>
             </select>
+            <div class="form__info-block form__info-block--delivery">
+              С производственной базы по адресу:
+              <p class="form__text form__text--info-block">353320, Краснодарский край, г.&nbsp;Абинск, ул. Промышленная, 4</p>
+            </div>
+          </label>
+          <label class="form__label form__label--station" for="station">
+            <span class="form__text form__text--station">Станция *</span>
+            <input class="form__input form__input--station" id="station" name="station" type="text">
+          </label>
+          <label class="form__label form__label--address" for="address">
+            <span class="form__text form__text--address">Адрес *</span>
+            <textarea class="form__input form__input--address" id="address" name="address" rows="3"></textarea>
           </label>
           <label class="form__label form__label--message" for="message">
             <span class="form__text form__text--message">Сообщение</span>
-            <textarea class="form__input form__input--message" id="message" name="message"></textarea>
+            <textarea class="form__input form__input--message" id="message" name="message" rows="5"></textarea>
           </label>
           <label  class="form__label form__label--documents" for="documents">
             <span class="form__text form__text--documents">Добавить файл *</span>
-            <input class="form__input form__input--documents" id="documents" name="document" type="file" required>
+            <input class="form__input form__input--documents" id="documents" name="documents" type="file">
             <div class="form__input form__input--file"></div>
           </label>
           <input class="btn btn--order" type="submit" value="Отправить">
@@ -262,16 +285,16 @@
     </section>
   </main>
   <footer>
-    <div class="container">
-      <section class="contacts">
-        <ul class="contacts__list">
-          <li class="contacts__item">
-            <span class="contacts__key">Телефон:</span>
-            <a class="contacts__value" href="tel:88615041618">8 (86 150) 4 16 18</a>
+    <section class="contacts">
+      <div class="container clearfix">
+        <ul class="contacts__list contacts__list--main">
+          <li class="contacts__item contacts__item--main">
+            <span class="contacts__key contacts__key--main">Телефон:</span>
+            <a class="contacts__value contacts__value--main" href="tel:88615041618">8 (86 150) 4 16 18</a>
           </li>
-          <li class="contacts__item">
-            <span class="contacts__key">E-mail:</span>
-            <a class="contacts__value" href="mailto:snabservis_llc@mail.ru">snabservis_llc@mail.ru</a>
+          <li class="contacts__item contacts__item--main">
+            <span class="contacts__key contacts__key--main">E-mail:</span>
+            <a class="contacts__value contacts__value--main" href="mailto:snabservis_llc@mail.ru">snabservis_llc@mail.ru</a>
           </li>
         </ul>
         <ul class="contacts__list contacts__list--links">
@@ -285,12 +308,16 @@
             <a class="contacts__link" href="#">Договор на поставку сырья</a>
           </li>
         </ul>
-      </section>
-      <section class="copyright">
+      </div>
+    </section>
+    <section class="copyright">
+      <div class="container clearfix">
         <p class="copyright__text copyright__text--snabservice">ООО “СнабСервис” 2016. Все права защищены.</p>
-        <p class="copyright__text copyright__text--julo">разработано <span class="copyright__text--julo-title">Julo</span></p>
-      </section>
-    </div>
+        <p class="copyright__text copyright__text--julo">разработано <a class="copyright__text--julo-title" href="http://startjulo.ru/" target="blank_">Julo</a></p>
+      </div>
+    </section>
   </footer>
+  <script src="//cdn.polyfill.io/v1/polyfill.js?features=es5"></script>
+  <script src="/static/pages/js/script.js"></script>
 </body>
 </html>

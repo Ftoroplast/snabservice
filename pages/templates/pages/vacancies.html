@@ -13,7 +13,7 @@
     <div class="container">
       <nav class="clearfix">
         <div class="logo">
-          <img src="/static/pages/img/header__logo.png" width="124" height="28" alt="CнабСервис. Трейдинговая компания.">
+          <img src="/static/pages/img/logo__header--snabservice.png" width="124" height="28" alt="CнабСервис. Трейдинговая компания.">
         </div>
         <ul class="menu">
           <li class="menu__item">
@@ -45,6 +45,7 @@
       <div class="container">
         <h1 class="page-title page-title--vacancies">Вакансии, актуальные на данный момент:</h1>
         {% for vacancie in vacancies %}
+        {% autoescape off %}
           <section class="vacancie">
             <h2 class="vacancie__position">{{ vacancie.position }}</h2>
             <ul class="vacancie__parameters">
@@ -66,6 +67,7 @@
               </li>
             </ul>
           </section>
+        {% endautoescape %}
         {% endfor %}
       </div>
     </section>
@@ -125,10 +127,36 @@
   </main>
 </body>
 <footer>
-  <div class="container">
-    <section class="copyright">
-      <p class="copyright__text">ООО “СнабСервис” 2016</p>
-    </section>
-  </div>
+  <section class="contacts">
+    <div class="container clearfix">
+      <ul class="contacts__list contacts__list--main">
+        <li class="contacts__item contacts__item--main">
+          <span class="contacts__key contacts__key--main">Телефон:</span>
+          <a class="contacts__value contacts__value--main" href="tel:88615041618">8 (86 150) 4 16 18</a>
+        </li>
+        <li class="contacts__item contacts__item--main">
+          <span class="contacts__key contacts__key--main">E-mail:</span>
+          <a class="contacts__value contacts__value--main" href="mailto:snabservis_llc@mail.ru">snabservis_llc@mail.ru</a>
+        </li>
+      </ul>
+      <ul class="contacts__list contacts__list--links">
+        <li class="contacts__item contacts__item--links">
+          <a class="contacts__link" href="#">Реквизиты ООО “СнабСервис”</a>
+        </li>
+        <li class="contacts__item contacts__item--links">
+          <a class="contacts__link" href="#">Лицензия ООО “СнабСервис”</a>
+        </li>
+        <li class="contacts__item contacts__item--links">
+          <a class="contacts__link" href="#">Договор на поставку сырья</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <section class="copyright">
+    <div class="container clearfix">
+      <p class="copyright__text copyright__text--snabservice">ООО “СнабСервис” 2016. Все права защищены.</p>
+      <p class="copyright__text copyright__text--julo">разработано <a class="copyright__text--julo-title" href="http://startjulo.ru/" target="blank_">Julo</a></p>
+    </div>
+  </section>
 </footer>
 </html>

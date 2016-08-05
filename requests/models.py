@@ -21,12 +21,12 @@ CITIES = (
 )
 
 class Product(models.Model):
-  title = models.CharField(max_length = 50)
-  category = models.CharField(max_length = 15)
+  title = models.CharField(max_length = 50, blank = True, default = "none")
+  category = models.CharField(max_length = 15, blank = True, default = "none")
   shape = models.CharField(max_length = 30, blank = True, default = 0)
-  diameter = models.DecimalField(max_digits = 10, decimal_places = 5)
-  length = models.DecimalField(max_digits = 10, decimal_places = 5, blank = True, default = 0)
-  price = models.IntegerField()
+  diameter = models.FloatField(blank = True, default = 0)
+  length = models.FloatField(blank = True, default = 0)
+  price = models.IntegerField(blank = True, default = 0)
 
   def __unicode__(self):
     return self.title
@@ -49,16 +49,23 @@ class Purchase(models.Model):
   def __unicode__(self):
     return self.first_name + self.patronym + self.last_name
 
-class Sale(models.Model):
+class SaleOrder(models.Model):
   first_name = models.CharField(max_length = 30)
   patronym = models.CharField(max_length = 30)
   last_name = models.CharField(max_length = 30)
   phone = models.CharField(max_length = 30)
   email = models.EmailField()
-  product = models.ManyToManyField(Product)
   delivery_type = models.CharField(max_length = 20, choices = DELIVERY_TYPE_CHOICES)
   document = models.FileField(upload_to = "uploads/sales")
   message = models.TextField()
 
   def __unicode__(self):
-    return self.first_name + self.patronym + self.last_name
+    return str(self.pk)
+
+class SaleItem(models.Model):
+  order = models.ForeignKey(SaleOrder)
+  product = models.ForeignKey(Product)
+  amount = models.IntegerField()
+
+  def __unicode__(self):
+    return str(self.order)

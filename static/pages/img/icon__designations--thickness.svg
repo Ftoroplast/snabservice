@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="8" height="24" viewBox="0 0 8 24">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #141319;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="thickness_icon" class="cls-1" d="M0,0H8V24H0V0ZM2,2H6V22H2V2ZM6,3H8V5H6V3ZM6,7H8V9H6V7Zm0,4H8v2H6V11Zm0,4H8v2H6V15Zm0,4H8v2H6V19ZM0,3H2V5H0V3ZM0,7H2V9H0V7Zm0,4H2v2H0V11Zm0,4H2v2H0V15Zm0,4H2v2H0V19Zm3,3H5v2H3V22ZM3,0H5V2H3V0Z"/>
+</svg>
