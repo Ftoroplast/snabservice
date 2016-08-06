@@ -180,14 +180,14 @@
                         <th class="goods__header"></th>
                       {% endif %}
                       {% if title == "Арматура" or title == "Катанка" %}
-                        <th class="goods__header">Диаметр, мм</th>
+                        <th class="goods__header">Диаметр</th>
                       {% endif %}
                       {% if title == "Арматура" %}
-                        <th class="goods__header">Длина, м</th>
+                        <th class="goods__header">Длина</th>
                       {% endif %}
-                      <th class="goods__header">Цена за тонну, Р</th>
-                      <th class="goods__header">Количество, т</th>
-                      <th class="goods__header">Сумма, Р</th>
+                      <th class="goods__header">Цена за тонну</th>
+                      <th class="goods__header">Количество</th>
+                      <th class="goods__header">Сумма</th>
                     </tr>
                   {% endifchanged %}
                   {% regroup category.products by shape as shape_list %}
@@ -200,20 +200,20 @@
                         {% endifchanged %}
                       {% endif %}
                       {% if title == "Арматура" or title == "Катанка" %}
-                        <td class="goods__parameter goods__parameter--diameter">{{ product.diameter }}</td>
+                        <td class="goods__parameter goods__parameter--diameter">{{ product.diameter }} мм</td>
                       {% endif %}
                       {% if title == "Арматура" %}
                         <td class="goods__parameter goods__parameter--length">
                           {% if product.length %}
-                            {{ product.length }}
+                            {{ product.length }} м
                           {% else %}
                             - - -
                           {% endif %}</td>
                       {% endif %}
-                      <td class="goods__parameter goods__parameter--price">{{ product.price }}</td>
+                      <td class="goods__parameter goods__parameter--price">{{ product.price }} Р</td>
                       <td class="goods__parameter goods__parameter--amount">
                         <div class="goods__value goods__value--amount">
-                          <input class="form__input form__input--amount" name="{{ product.pk }}_amount" type="text" value="0" disabled>
+                          <input class="form__input form__input--amount" name="{{ product.pk }}_amount" type="text" value="0"> т
                         </div>
                         <div class="goods__arrow goods__arrow--up"></div>
                         <div class="goods__arrow goods__arrow--down"></div>

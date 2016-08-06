@@ -4,27 +4,24 @@
   var goods = document.querySelectorAll(".goods__element");
 
   [].forEach.call(goods, function (item, i, arr) {
-    item.product_id = item.querySelector("input").getAttribute("name");
+    item.product_id = i;
 
     item.metalType = item.parentElement.parentElement.parentElement.getAttribute("id");
 
     item.category = item.parentElement.parentElement.firstElementChild.innerHTML;
-
-    item.amount = 0;
 
     var priceParameter = item.querySelector(".goods__parameter--price");
     item.price = parseInt(priceParameter.innerHTML);
 
     item.sum = 0;
 
+    var amountParameter = this.querySelector("input");
+
     item.getAmount = function () {
-      return this.amount;
+      return amountParameter.getAttribute("value");
     }
 
     item.setAmount = function (newValue) {
-      this.amount = newValue;
-
-      var amountParameter = this.querySelector("input");
       amountParameter.setAttribute("value", newValue);
 
       var sumParameter = this.querySelector(".goods__parameter--sum");
@@ -34,8 +31,6 @@
       } else {
         sumParameter.innerHTML = "- - -";
       };
-
-      addToCart(item);
     }
 
     var increaseArrow = item.querySelector(".goods__arrow--up");
@@ -53,62 +48,89 @@
     }
   });
 
-  function addToCart(item) {
-    var newCartItem = item.cloneNode(true);
-    var inputAmount = newCartItem.querySelector("input");
-    inputAmount.setAttribute("form", "form");
-    newCartItem.setAmount = function (newValue) {
-      item.setAmount(newValue);
+  var cart = document.querySelector(".cart");
 
-      var amountParameterClone = this.querySelector("input");
-      var amountParameterOriginal = item.querySelector("input");
-      amountParameterClone.setAttribute("value", amountParameterOriginal.getAttribute("value"));
+  cart.__tableList = [];
 
-      var sumParameterClone = this.querySelector(".goods__parameter--sum");
-      var sumParameterOriginal = item.querySelector(".goods__parameter--sum");
-      sumParameterClone.innerHTML = sumParameterOriginal.innerHTML;
-    }
+  cart.__findTable = function (item) {
 
-    var cart = document.querySelector(".cart");
-    var metalTypeCheckList = [];
-    var categoryCheckList = [];
-    var productIdCheckList = []
-    if (!newCartItem.metalType in metalTypeCheckList) {
-      metalTypeCheckList.push(newCartItem.metalType);
-      productIdCheckList.push(newCartItem.product_id);
+    return table;
+  }
 
-      addNewItemToTable(createNewTable());
-    } else if (!newCartItem.category in categoryCheckList) {
-      categoryCheckList.push(newCartItem.category);
-      productIdCheckList.push(newCartItem.product_id);
+  cart.__createTable = function (item) {
 
-      addNewItemToTable(createNewTable());
-    } else if (!newCartItem.product_id in productIdCheckList) {
-      var captions = cart.querySelectorAll("caption");
-      var requireCaption = newCartItem.metalType + " " + newCartItem.category;
-      [].forEach.call(captions, function (caption, i, arr) {
-        if (caption.innerHTML == requireCaption) {
-          addNewItemToTable(caption.nextElement);
-        }
-      })
-    }
 
-    function createNewTable() {
-      var newTable = item.parentElement.parentElement.cloneNode(true);
-      var newTableBody = newTable.querySelector("tbody");
-      var newTableBodyElements = newTableBody.querySelectorAll(".goods__element");
-      [].forEach.call(newTableBodyElements, function (newTableBodyElement, i, arr) {
-        arr.removeChild(newTableBodyElement);
-      });
-      var newTableCaption = newTable.querySelector("caption");
-      newTableCaption.innerHTML = newCartItem.metalType + " " + newCartItem.category;
-      cart.appendChild(newTable);
+    return newTable;
+  }
 
-      return newTableBody;
-    }
+  cart.addItem = function (item) {
+    var cartItem = item.cloneNode(true);
 
-    function addNewItemToTable(tableBody) {
-      tableBody.appendChild(newCartItem);
+    var tableSearchResult = this.__findTable(item);
+    if (tableSearchResult) {
+      tableSearchResult.querySelector("tbody").appendChild(item);
+    } else {
+      var newTable = this.__createTable(item);
+      newTable.querySelector("tbody").appendChild(item);
     }
   }
+
+  // function addToCart(item) {
+  //   var newCartItem = item.cloneNode(true);
+  //   var inputAmount = newCartItem.querySelector("input");
+  //   inputAmount.setAttribute("form", "form");
+  //   newCartItem.setAmount = function (newValue) {
+  //     item.setAmount(newValue);
+  //
+  //     var amountParameterClone = this.querySelector("input");
+  //     var amountParameterOriginal = item.querySelector("input");
+  //     amountParameterClone.setAttribute("value", amountParameterOriginal.getAttribute("value"));
+  //
+  //     var sumParameterClone = this.querySelector(".goods__parameter--sum");
+  //     var sumParameterOriginal = item.querySelector(".goods__parameter--sum");
+  //     sumParameterClone.innerHTML = sumParameterOriginal.innerHTML;
+  //   }
+  //
+  //   var cart = document.querySelector(".cart");
+  //   var metalTypeCheckList = [];
+  //   var categoryCheckList = [];
+  //   var productIdCheckList = []
+  //   if (!newCartItem.metalType in metalTypeCheckList) {
+  //     metalTypeCheckList.push(newCartItem.metalType);
+  //     productIdCheckList.push(newCartItem.product_id);
+  //
+  //     addNewItemToTable(createNewTable());
+  //   } else if (!newCartItem.category in categoryCheckList) {
+  //     categoryCheckList.push(newCartItem.category);
+  //     productIdCheckList.push(newCartItem.product_id);
+  //
+  //     addNewItemToTable(createNewTable());
+  //   } else if (!newCartItem.product_id in productIdCheckList) {
+  //     var captions = cart.querySelectorAll("caption");
+  //     var requireCaption = newCartItem.metalType + " " + newCartItem.category;
+  //     [].forEach.call(captions, function (caption, i, arr) {
+  //       if (caption.innerHTML == requireCaption) {
+  //         addNewItemToTable(caption.nextElement);
+  //       }
+  //     })
+  //   }
+  //
+  //   function createNewTable() {
+  //     var newTable = item.parentElement.parentElement.cloneNode(true);
+  //     var newTableBody = newTable.querySelector("tbody");
+  //     var newTableBodyElements = newTableBody.querySelectorAll(".goods__element");
+  //     [].forEach.call(newTableBodyElements, function (newTableBodyElement, i, arr) {
+  //       arr.removeChild(newTableBodyElement);
+  //     });
+  //     var newTableCaption = newTable.querySelector("caption");
+  //     newTableCaption.innerHTML = newCartItem.metalType + " " + newCartItem.category;
+  //     cart.appendChild(newTable);
+  //
+  //     return newTableBody;
+  //   }
+  //
+  //   function addNewItemToTable(tableBody) {
+  //     tableBody.appendChild(newCartItem);
+  //   }
+  // }
 })();

@@ -52,6 +52,7 @@
 }
 
 body {
+  padding-top: 60px;
   background-color: #f0f7f7;
 
   color: #292b30;
@@ -76,6 +77,11 @@ h2 {
 }
 
 header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+
   background-color: #292b30;
 
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
@@ -274,6 +280,8 @@ label {
 }
 
 .requisites {
+  position: relative;
+
   padding-bottom: 77px;
 
   background-color: #292b30;
@@ -336,16 +344,22 @@ label {
 
 .map {
   position: absolute;
-  left: 750px;
+  left: 60%;
+  bottom: -230px;
   top: -230px;
-  bottom: -330px;
 
   width: 1217px;
 
-  border-top-left-radius: 50%;
-  border-bottom-left-radius: 50%;
   background: url("../img/bg__map--static.jpg") no-repeat -300px center;
   background-size: contain;
+}
+
+.map__mask {
+  position: absolute;
+  top: 46px;
+  left: 0;
+  transform: scale(1.1);
+  display: none;
 }
 
 .callback {
@@ -953,7 +967,7 @@ label {
 }
 
 .about__title--certification .container {
-  padding-left: 250px;
+  padding-left: 200px;
 }
 
 .about__list--price {
@@ -1018,6 +1032,7 @@ label {
 
   text-decoration: underline;
   font-size: 12px;
+  line-height: 20px;
 }
 
 .about__text--price {
@@ -1224,6 +1239,7 @@ h3.about__title--assortiment {
   background-color: #f0f7f7;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2),
               inset 0 1px 1px 0 rgba(255, 255, 255, 0.1);
+  border-radius: 1px;
 
   text-decoration: none;
   text-align: center;
@@ -1233,7 +1249,12 @@ h3.about__title--assortiment {
   font-family: "ClearSans Regular", "Arial", sans-serif;
   font-weight: 400;
   font-size: 16px;
-  line-height: 35px;
+  line-height: 36px;
+}
+
+.btn--introduction:hover {
+  background-color: #2b98d9;
+  color: #f0f7f7;
 }
 
 .partner {
@@ -1248,8 +1269,10 @@ h3.about__title--assortiment {
 .partner__logo {
   display: inline-block;
   vertical-align: middle;
-  margin-right: 50px;
+  margin-right: 25px;
   margin-left: 420px;
+  padding-right: 24px;
+  border-right: 1px solid #484c4c;
 
   font-size: 14px;
   line-height: 5px;
@@ -1644,7 +1667,7 @@ h3.about__title--assortiment {
 
 .cart__title {
   margin-bottom: 45px;
-  
+
   text-align: center;
 
   font-family: "ClearSans Regular", "Arial", sans-serif;
