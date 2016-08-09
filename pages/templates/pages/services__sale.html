@@ -13,14 +13,14 @@
     <div class="container">
       <nav class="clearfix">
         <div class="logo">
-          <img src="/static/pages/img/logo__header--snabservice.png" width="124" height="28" alt="CнабСервис. Трейдинговая компания.">
+          <img src="/static/pages/img/logo__header--snabservice.svg" width="175" height="45" alt="CнабСервис. Трейдинговая компания.">
         </div>
         <ul class="menu">
           <li class="menu__item">
             <a class="menu__link" href="/">Главная</a>
           </li>
           <li class="menu__item menu__item--active">
-            <a class="menu__link menu__link--services" href="/sales/">Услуги</a>
+            <a class="menu__link menu__link--services" href="/purchases/">Услуги</a>
             <ul class="menu__modal-window">
               <li class="menu__item menu__item--modal-window">
                 <a class="menu__link menu__link--modal-window" href="/purchases/">Покупаем металлолом</a>
@@ -68,7 +68,7 @@
         <ul class="about__list about__list--certification">
           <div class="container">
             <li class="about__item about__item--certification">
-              <a class="about__link about__link--certification" href="#">
+              <a class="about__link about__link--certification" href="/static/pages/img/doc__certification--A240.pdf">
                 <div class="about__picture about__picture--certification">
                   <img src="/static/pages/img/icon__certification--marker.svg" width="51" height="66" alt="">
                 </div>
@@ -78,7 +78,7 @@
               </a>
             </li>
             <li class="about__item about__item--certification">
-              <a class="about__link about__link--certification" href="#">
+              <a class="about__link about__link--certification" href="/static/pages/img/doc__certification--AT800_AT1000.pdf">
                 <div class="about__picture about__picture--certification">
                   <img src="/static/pages/img/icon__certification--marker.svg" width="51" height="66" alt="">
                 </div>
@@ -88,7 +88,7 @@
               </a>
             </li>
             <li class="about__item about__item--certification">
-              <a class="about__link about__link--certification" href="#">
+              <a class="about__link about__link--certification" href="/static/pages/img/doc__certification--A500C_8-25mm.pdf">
                 <div class="about__picture about__picture--certification">
                   <img src="/static/pages/img/icon__certification--marker.svg" width="51" height="66" alt="">
                 </div>
@@ -98,7 +98,7 @@
               </a>
             </li>
             <li class="about__item about__item--certification">
-              <a class="about__link about__link--certification" href="#">
+              <a class="about__link about__link--certification" href="/static/pages/img/doc__certification--A500C_8-25mm.pdf">
                 <div class="about__picture about__picture--certification">
                   <img src="/static/pages/img/icon__certification--marker.svg" width="51" height="66" alt="">
                 </div>
@@ -108,7 +108,7 @@
               </a>
             </li>
             <li class="about__item about__item--certification">
-              <a class="about__link about__link--certification" href="#">
+              <a class="about__link about__link--certification" href="/static/pages/img/doc__certification--A500C_28-40mm.pdf">
                 <div class="about__picture about__picture--certification">
                   <img src="/static/pages/img/icon__certification--marker.svg" width="51" height="66" alt="">
                 </div>
@@ -117,7 +117,8 @@
                 </p>
               </a>
             </li>
-            <li class="about__item about__item--certification"><a href="" class="about__link about__link--certification">
+            <li class="about__item about__item--certification">
+              <a class="about__link about__link--certification" href="/static/pages/img/doc__certification--CTO_8-14mm_16-25mm.pdf">
                 <div class="about__picture about__picture--certification">
                   <img src="/static/pages/img/icon__certification--marker.svg" width="51" height="66" alt="">
                 </div>
@@ -180,14 +181,14 @@
                         <th class="goods__header"></th>
                       {% endif %}
                       {% if title == "Арматура" or title == "Катанка" %}
-                        <th class="goods__header">Диаметр</th>
+                        <th class="goods__header">Диаметр, мм</th>
                       {% endif %}
                       {% if title == "Арматура" %}
-                        <th class="goods__header">Длина</th>
+                        <th class="goods__header">Длина, м</th>
                       {% endif %}
-                      <th class="goods__header">Цена за тонну</th>
-                      <th class="goods__header">Количество</th>
-                      <th class="goods__header">Сумма</th>
+                      <th class="goods__header">Цена за тонну, руб.</th>
+                      <th class="goods__header">Количество, т</th>
+                      <th class="goods__header">Сумма, руб.</th>
                     </tr>
                   {% endifchanged %}
                   {% regroup category.products by shape as shape_list %}
@@ -200,20 +201,20 @@
                         {% endifchanged %}
                       {% endif %}
                       {% if title == "Арматура" or title == "Катанка" %}
-                        <td class="goods__parameter goods__parameter--diameter">{{ product.diameter }} мм</td>
+                        <td class="goods__parameter goods__parameter--diameter">{{ product.diameter }}</td>
                       {% endif %}
                       {% if title == "Арматура" %}
                         <td class="goods__parameter goods__parameter--length">
                           {% if product.length %}
-                            {{ product.length }} м
+                            {{ product.length }}
                           {% else %}
                             - - -
                           {% endif %}</td>
                       {% endif %}
-                      <td class="goods__parameter goods__parameter--price">{{ product.price }} Р</td>
+                      <td class="goods__parameter goods__parameter--price">{{ product.price }}</td>
                       <td class="goods__parameter goods__parameter--amount">
                         <div class="goods__value goods__value--amount">
-                          <input class="form__input form__input--amount" name="{{ product.pk }}_amount" type="text" value="0"> т
+                          <input class="form__input form__input--amount" name="{{ product.pk }}_amount" type="text" value="0" disabled>
                         </div>
                         <div class="goods__arrow goods__arrow--up"></div>
                         <div class="goods__arrow goods__arrow--down"></div>
@@ -236,7 +237,7 @@
         <div class="cart">
           <h3 class="cart__title">Выбранные позиции:</h3>
         </div>
-        <form class="form-section__form form-section__form--order" action="/sales/" method="POST">
+        <form class="form-section__form form-section__form--order" action="/sales_action/" method="POST" enctype="multipart/form-data">
           {% csrf_token %}
           <label class="form__label form__label--last-name" for="last-name">
             <span class="form__text form__text--last-name">Фамилия *</span>
@@ -299,13 +300,13 @@
         </ul>
         <ul class="contacts__list contacts__list--links">
           <li class="contacts__item contacts__item--links">
-            <a class="contacts__link" href="#">Реквизиты ООО “СнабСервис”</a>
+            <a class="contacts__link" href="/contacts/">Реквизиты ООО “СнабСервис”</a>
           </li>
           <li class="contacts__item contacts__item--links">
-            <a class="contacts__link" href="#">Лицензия ООО “СнабСервис”</a>
+            <a class="contacts__link" href="/static/pages/img/doc__footer--license.pdf">Лицензия ООО “СнабСервис”</a>
           </li>
           <li class="contacts__item contacts__item--links">
-            <a class="contacts__link" href="#">Договор на поставку сырья</a>
+            <a class="contacts__link" href="/static/pages/img/doc__footer--card-of-organization.pdf">Договор на поставку сырья</a>
           </li>
         </ul>
       </div>

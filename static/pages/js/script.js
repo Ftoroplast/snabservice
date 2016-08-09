@@ -10,15 +10,10 @@
 
     item.category = item.parentElement.parentElement.firstElementChild.innerHTML;
 
-    var priceParameter = item.querySelector(".goods__parameter--price");
-    item.price = parseInt(priceParameter.innerHTML);
-
-    item.sum = 0;
-
-    var amountParameter = this.querySelector("input");
+    var amountParameter = item.querySelector("input");
 
     item.getAmount = function () {
-      return amountParameter.getAttribute("value");
+      return parseInt(amountParameter.getAttribute("value"));
     }
 
     item.setAmount = function (newValue) {
@@ -26,10 +21,13 @@
 
       var sumParameter = this.querySelector(".goods__parameter--sum");
       if (newValue) {
-        this.sum = newValue * this.price;
-        sumParameter.innerHTML = this.sum;
+        sumParameter.innerHTML = newValue * parseInt(this.querySelector(".goods__parameter--price").innerHTML) + " Р";
+
+        cart.addItem(this);
       } else {
         sumParameter.innerHTML = "- - -";
+
+        cart.removeItem(item);
       };
     }
 
@@ -50,87 +48,162 @@
 
   var cart = document.querySelector(".cart");
 
-  cart.__tableList = [];
+  cart.__findItem = function (item) {
+    var cartItems = cart.querySelectorAll(".goods__element");
+    for (var i = 0; i < cartItems.length; ++i) {
+      if (item.product_id == cartItems[i].product_id) {
+        return cartItems[i];
+      }
+    };
+  }
 
   cart.__findTable = function (item) {
-
-    return table;
+    var cartTables = document.querySelectorAll(".goods__table");
+    var searchableTableCaption = item.metalType + " " + item.category;
+    for (var i = 0; i < cartTables.length; ++i) {
+      if (searchableTableCaption == cartTables[i].querySelector("caption").innerHTML) {
+        return cartTables[i];
+      }
+    };
   }
 
   cart.__createTable = function (item) {
-
+    var newTable = item.parentElement.parentElement.cloneNode(true);
+    var newTableBody = newTable.querySelector("tbody");
+    var newTableElements = newTable.querySelectorAll(".goods__element");
+    [].forEach.call(newTableElements, function (newTableElement, i, arr) {
+      newTableBody.removeChild(newTableElement);
+    });
+    var newTableCaption = newTable.querySelector("caption");
+    newTableCaption.innerHTML = item.metalType + " " + item.category;
+    cart.appendChild(newTable);
 
     return newTable;
   }
 
   cart.addItem = function (item) {
     var cartItem = item.cloneNode(true);
+    cartItem.product_id = item.product_id;
+    cartItem.metalType = item.metalType;
+    cartItem.category = item.category;
+    cartItem.querySelector("input").setAttribute("form", "form");
 
-    var tableSearchResult = this.__findTable(item);
-    if (tableSearchResult) {
-      tableSearchResult.querySelector("tbody").appendChild(item);
+    if (item.metalType === "Арматура") {
+      var shapeParameter = cartItem.querySelector(".goods__parameter--shape");
+      if (shapeParameter) {
+        shapeParameter.setAttribute("rowspan", "1");
+      } else {
+        var previousElement = item.previousElementSibling;
+        while (!previousElement.querySelector(".goods__parameter--shape")) {
+          previousElement = previousElement.previousElementSibling;
+        }
+        shapeParameter = document.createElement("td");
+        shapeParameter.className = "goods__parameter goods__parameter--shape";
+        cartItem.insertBefore(shapeParameter, cartItem.querySelector(".goods__parameter--diameter"));
+        shapeParameter.innerHTML = previousElement.querySelector(".goods__parameter--shape").innerHTML;
+      }
+    }
+
+    var amountParameter = cartItem.querySelector("input");
+    cartItem.getAmount = function () {
+      return parseInt(amountParameter.getAttribute("value"));
+    }
+
+    cartItem.setAmount = function (newValue) {
+      amountParameter.setAttribute("value", newValue);
+
+      var sumParameter = this.querySelector(".goods__parameter--sum");
+      if (newValue) {
+        sumParameter.innerHTML = newValue * parseInt(this.querySelector(".goods__parameter--price").innerHTML) + " Р";
+      } else {
+        sumParameter.innerHTML = "- - -";
+      };
+
+      var amountParameterClone = this.querySelector("input");
+      var amountParameterOriginal = item.querySelector("input");
+      amountParameterOriginal.setAttribute("value", amountParameterClone.getAttribute("value"));
+
+      var sumParameterClone = this.querySelector(".goods__parameter--sum");
+      var sumParameterOriginal = item.querySelector(".goods__parameter--sum");
+      sumParameterOriginal.innerHTML = sumParameterClone.innerHTML;
+
+      if (!this.getAmount()) {
+        cart.removeItem(this);
+      }
+    }
+
+    var increaseArrow = cartItem.querySelector(".goods__arrow--up");
+    increaseArrow.onclick = function () {
+      var newValue = cartItem.getAmount() + 1;
+      cartItem.setAmount(newValue);
+    };
+
+    var decreaseArrow = cartItem.querySelector(".goods__arrow--down");
+    decreaseArrow.onclick = function () {
+      if (cartItem.getAmount() > 0) {
+        var newValue = cartItem.getAmount() - 1;
+        cartItem.setAmount(newValue);
+      };
+    }
+
+    if (this.__findItem(item)) {
+      console.log("OK");
+      this.__findItem(item).setAmount(item.getAmount());
+    } else if (this.__findTable(item)) {
+      this.__findTable(item).querySelector("tbody").appendChild(cartItem);
     } else {
-      var newTable = this.__createTable(item);
-      newTable.querySelector("tbody").appendChild(item);
+      console.log(this.__findItem(item));
+      this.__createTable(item).querySelector("tbody").appendChild(cartItem);
     }
   }
 
-  // function addToCart(item) {
-  //   var newCartItem = item.cloneNode(true);
-  //   var inputAmount = newCartItem.querySelector("input");
-  //   inputAmount.setAttribute("form", "form");
-  //   newCartItem.setAmount = function (newValue) {
-  //     item.setAmount(newValue);
-  //
-  //     var amountParameterClone = this.querySelector("input");
-  //     var amountParameterOriginal = item.querySelector("input");
-  //     amountParameterClone.setAttribute("value", amountParameterOriginal.getAttribute("value"));
-  //
-  //     var sumParameterClone = this.querySelector(".goods__parameter--sum");
-  //     var sumParameterOriginal = item.querySelector(".goods__parameter--sum");
-  //     sumParameterClone.innerHTML = sumParameterOriginal.innerHTML;
-  //   }
-  //
-  //   var cart = document.querySelector(".cart");
-  //   var metalTypeCheckList = [];
-  //   var categoryCheckList = [];
-  //   var productIdCheckList = []
-  //   if (!newCartItem.metalType in metalTypeCheckList) {
-  //     metalTypeCheckList.push(newCartItem.metalType);
-  //     productIdCheckList.push(newCartItem.product_id);
-  //
-  //     addNewItemToTable(createNewTable());
-  //   } else if (!newCartItem.category in categoryCheckList) {
-  //     categoryCheckList.push(newCartItem.category);
-  //     productIdCheckList.push(newCartItem.product_id);
-  //
-  //     addNewItemToTable(createNewTable());
-  //   } else if (!newCartItem.product_id in productIdCheckList) {
-  //     var captions = cart.querySelectorAll("caption");
-  //     var requireCaption = newCartItem.metalType + " " + newCartItem.category;
-  //     [].forEach.call(captions, function (caption, i, arr) {
-  //       if (caption.innerHTML == requireCaption) {
-  //         addNewItemToTable(caption.nextElement);
-  //       }
-  //     })
-  //   }
-  //
-  //   function createNewTable() {
-  //     var newTable = item.parentElement.parentElement.cloneNode(true);
-  //     var newTableBody = newTable.querySelector("tbody");
-  //     var newTableBodyElements = newTableBody.querySelectorAll(".goods__element");
-  //     [].forEach.call(newTableBodyElements, function (newTableBodyElement, i, arr) {
-  //       arr.removeChild(newTableBodyElement);
-  //     });
-  //     var newTableCaption = newTable.querySelector("caption");
-  //     newTableCaption.innerHTML = newCartItem.metalType + " " + newCartItem.category;
-  //     cart.appendChild(newTable);
-  //
-  //     return newTableBody;
-  //   }
-  //
-  //   function addNewItemToTable(tableBody) {
-  //     tableBody.appendChild(newCartItem);
-  //   }
-  // }
+  cart.removeItem = function (item) {
+    if (this.__findItem(item).parentElement.children.length < 3) {
+      this.__findTable(item).parentElement.removeChild(this.__findTable(item));
+    } else {
+      this.__findItem(item).parentElement.removeChild(this.__findItem(item));
+    }
+  }
+
+  var stationLabel = document.querySelector(".form__label--station");
+  stationLabel.show = show;
+  stationLabel.hide = hide;
+
+  var addressLabel = document.querySelector(".form__label--address");
+  addressLabel.show = show;
+  addressLabel.hide = hide;
+
+  function show() {
+    if (!this.classList.contains("jsShow")) {
+      this.classList.addClass("jsShow");
+    }
+  };
+
+  function hide() {
+    if (this.classList.contains("jsShow")) {
+      this.classList.removeClass("jsShow");
+    }
+  };
+
+  var deliveryTypeSelect = document.querySelector(".form__input--delivery");
+  var deliveryTypeOptions = deliveryTypeSelect.querySelectorAll("option");
+  var deliveryTypeOptionFlag = "";
+  [].forEach.call(deliveryTypeOptions, function (deliveryTypeOption, i, arr) {
+    deliveryTypeOption.onclick = function () {
+      deliveryTypeOptionFlag = deliveryTypeOption.getAttribute("value");
+    };
+  })
+  deliveryTypeSelect.onchange = function () {
+    if (deliveryTypeOptionFlag == "Железной дорогой") {
+      console.log("1");
+      addressLabel.hide();
+      stationLabel.show();
+    } else if (deliveryTypeOptionFlag == "Автотранспортом") {
+      stationLabel.hide();
+      addressLabel.show();
+    } else {
+      addressLabel.hide();
+      stationLabel.hide();
+    }
+  }
 })();

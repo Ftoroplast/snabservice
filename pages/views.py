@@ -3,7 +3,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from requests.models import Product, SaleOrder, Purchase
-from requests.forms import AddSaleForm
 from pages.models import Vacancie
 
 # Create your views here.
@@ -27,16 +26,8 @@ def SalesView(request):
   for product in products:
     if not (product.title in titles):
       titles.append(product.title)
-
-  if request.method == "POST":
-    form = AddSaleForm(request.POST)
-    if form.is_valid():
-      form.save()
-      return HttpResponseRedirect('/sales/')
-  else:
-    form = AddSaleForm()
     
-  return render(request, 'pages/services__sale.html', context = {'titles': titles, 'categories': categories, 'form': form}, content_type = 'text/html')
+  return render(request, 'pages/services__sale.html', context = {'titles': titles, 'categories': categories}, content_type = 'text/html')
 
 def PurchasesView(request):
   return render(request, 'pages/services__purchase.html', context = {}, content_type = 'text/html')

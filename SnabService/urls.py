@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^purchases/', 'pages.views.PurchasesView', name = 'purchases'),
     url(r'^vacancies/', 'pages.views.VacanciesView', name = 'vacancies'),
     url(r'^contacts/', 'pages.views.ContactsView', name = 'contacts'),
+    url(r'^sales_action/', 'requests.views.receive_sale_form', name = 'action'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', 'pages.views.IndexView', name = 'index'),
 ]
