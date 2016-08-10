@@ -420,6 +420,11 @@ label {
   list-style: none;
 }
 
+.goods__menu--fixed {
+  position: fixed;
+  top: 0;
+}
+
 .goods__item {
   margin-bottom: 25px;
 }
@@ -591,18 +596,6 @@ label {
   line-height: 18px;
 }
 
-.form__label--station {
-  display: none;
-}
-
-.form__label--address {
-  display: none;
-}
-
-.jsShow {
-  display: block;
-}
-
 .form__text--station::after {
   content: "(Название, код станции)";
 }
@@ -689,6 +682,18 @@ label {
   margin-bottom: 25px;
 }
 
+.form__label--station {
+  display: none;
+  margin-top: -20px;
+  margin-bottom: 35px;
+}
+
+.form__label--address {
+  display: none;
+  margin-top: -20px;
+  margin-bottom: 35px;
+}
+
 .btn {
   width: 200px;
   border: none;
@@ -736,6 +741,11 @@ label {
   font-weight: 700;
   font-size: 14px;
   line-height: 18px;
+}
+
+.form__input--select-disabled {
+  font-family: "ClearSans Regular", "Arial", sans-serif;
+  font-weight: 400;
 }
 
 .form__input:focus {
@@ -1705,4 +1715,8 @@ h3.about__title--assortiment {
   font-weight: 400;
   font-size: 24px;
   line-height: 42px;
+}
+
+.jsShow {
+  display: block;
 }

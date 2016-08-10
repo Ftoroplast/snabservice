@@ -93,7 +93,8 @@
     <section class="form-section form-section--callback" id="callback">
       <div class="container">
         <h2 class="form-section__title">Форма обратной связи</h2>
-        <form class="form-section__form form-section__form--callback" action="send-callback.html" method="POST">
+        <form class="form-section__form form-section__form--callback" action="/contacts_action/" method="POST">
+          {% csrf_token %}
           <label class="form__label form__label--first-name" for="name">
             <span class="form__text form__text--first-name">Имя *</span>
             <input class="form__input" id="name" type="text">
@@ -130,13 +131,13 @@
         </ul>
         <ul class="contacts__list contacts__list--links">
           <li class="contacts__item contacts__item--links">
-            <a class="contacts__link" href="/contacts/">Реквизиты ООО “СнабСервис”</a>
+            <a class="contacts__link" href="/contacts/" target="blank_">Реквизиты ООО “СнабСервис”</a>
           </li>
           <li class="contacts__item contacts__item--links">
-            <a class="contacts__link" href="/static/pages/img/doc__footer--license.pdf">Лицензия ООО “СнабСервис”</a>
+            <a class="contacts__link" href="/static/pages/img/doc__footer--license.pdf" target="blank_">Лицензия ООО “СнабСервис”</a>
           </li>
           <li class="contacts__item contacts__item--links">
-            <a class="contacts__link" href="/static/pages/img/doc__footer--card-of-organization.pdf">Договор на поставку сырья</a>
+            <a class="contacts__link" href="/static/pages/img/doc__footer--card-of-organization.pdf" target="blank_">Договор на поставку сырья</a>
           </li>
         </ul>
       </div>

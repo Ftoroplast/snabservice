@@ -50,14 +50,14 @@ class Purchase(models.Model):
     return self.first_name + self.patronym + self.last_name
 
 class SaleOrder(models.Model):
-  first_name = models.CharField(max_length = 30)
-  patronym = models.CharField(max_length = 30)
-  last_name = models.CharField(max_length = 30)
-  phone = models.CharField(max_length = 30)
-  email = models.EmailField()
-  delivery_type = models.CharField(max_length = 20, choices = DELIVERY_TYPE_CHOICES)
-  document = models.FileField(upload_to = "uploads/sales")
-  message = models.TextField()
+#  first_name = models.CharField(max_length = 30)
+#  patronym = models.CharField(max_length = 30)
+#  last_name = models.CharField(max_length = 30)
+#  phone = models.CharField(max_length = 30)
+#  email = models.EmailField()
+#  delivery_type = models.CharField(max_length = 20, choices = DELIVERY_TYPE_CHOICES)
+  documents = models.FileField(upload_to = "uploads/sales")
+#  message = models.TextField()
 
   def __unicode__(self):
     return str(self.pk)

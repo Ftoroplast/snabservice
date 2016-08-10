@@ -237,7 +237,7 @@
         <div class="cart">
           <h3 class="cart__title">Выбранные позиции:</h3>
         </div>
-        <form class="form-section__form form-section__form--order" action="/sales_action/" method="POST" enctype="multipart/form-data">
+        <form class="form-section__form form-section__form--order" id="form" action="/sales_action/" method="POST" enctype="multipart/form-data">
           {% csrf_token %}
           <label class="form__label form__label--last-name" for="last-name">
             <span class="form__text form__text--last-name">Фамилия *</span>
@@ -254,6 +254,7 @@
           <label class="form__label form__label--delivery" for="delivery">
             <span class="form__text form__text--delivery">Доставка *</span>
             <select class="form__input form__input--delivery" id="delivery" name="delivery_type">
+              <option value="" disabled selected>Выберите из списка:</option>
               <option value="Самовывозом">Самовывозом</option>
               <option value="Железной дорогой">Железной дорогой</option>
               <option value="Автотранспортом">Автотранспортом</option>
@@ -277,7 +278,7 @@
           </label>
           <label  class="form__label form__label--documents" for="documents">
             <span class="form__text form__text--documents">Добавить файл *</span>
-            <input class="form__input form__input--documents" id="documents" name="documents" type="file">
+            <input class="form__input form__input--documents" id="documents" name="documents" type="file" multiple>
             <div class="form__input form__input--file"></div>
           </label>
           <input class="btn btn--order" type="submit" value="Отправить">
@@ -300,13 +301,13 @@
         </ul>
         <ul class="contacts__list contacts__list--links">
           <li class="contacts__item contacts__item--links">
-            <a class="contacts__link" href="/contacts/">Реквизиты ООО “СнабСервис”</a>
+            <a class="contacts__link" href="/contacts/" target="blank_">Реквизиты ООО “СнабСервис”</a>
           </li>
           <li class="contacts__item contacts__item--links">
-            <a class="contacts__link" href="/static/pages/img/doc__footer--license.pdf">Лицензия ООО “СнабСервис”</a>
+            <a class="contacts__link" href="/static/pages/img/doc__footer--license.pdf" target="blank_">Лицензия ООО “СнабСервис”</a>
           </li>
           <li class="contacts__item contacts__item--links">
-            <a class="contacts__link" href="/static/pages/img/doc__footer--card-of-organization.pdf">Договор на поставку сырья</a>
+            <a class="contacts__link" href="/static/pages/img/doc__footer--card-of-organization.pdf" target="blank_">Договор на поставку сырья</a>
           </li>
         </ul>
       </div>

@@ -165,6 +165,10 @@
     }
   }
 
+  var deliveryInfoBlock = document.querySelector(".form__info-block--delivery");
+  deliveryInfoBlock.show = show;
+  deliveryInfoBlock.hide = hide;
+
   var stationLabel = document.querySelector(".form__label--station");
   stationLabel.show = show;
   stationLabel.hide = hide;
@@ -175,35 +179,63 @@
 
   function show() {
     if (!this.classList.contains("jsShow")) {
-      this.classList.addClass("jsShow");
+      this.classList.add("jsShow");
     }
   };
 
   function hide() {
     if (this.classList.contains("jsShow")) {
-      this.classList.removeClass("jsShow");
+      this.classList.remove("jsShow");
     }
   };
 
   var deliveryTypeSelect = document.querySelector(".form__input--delivery");
   var deliveryTypeOptions = deliveryTypeSelect.querySelectorAll("option");
-  var deliveryTypeOptionFlag = "";
-  [].forEach.call(deliveryTypeOptions, function (deliveryTypeOption, i, arr) {
-    deliveryTypeOption.onclick = function () {
-      deliveryTypeOptionFlag = deliveryTypeOption.getAttribute("value");
-    };
-  })
+
   deliveryTypeSelect.onchange = function () {
-    if (deliveryTypeOptionFlag == "Железной дорогой") {
-      console.log("1");
-      addressLabel.hide();
-      stationLabel.show();
-    } else if (deliveryTypeOptionFlag == "Автотранспортом") {
-      stationLabel.hide();
-      addressLabel.show();
-    } else {
-      addressLabel.hide();
-      stationLabel.hide();
+    var n = this.options.selectedIndex;
+    switch (this.options[n].getAttribute("value")) {
+      case "Самовывозом":
+        addressLabel.hide();
+        stationLabel.hide();
+        deliveryInfoBlock.show();
+        break;
+      case "Железной дорогой":
+        deliveryInfoBlock.hide();
+        addressLabel.hide();
+        stationLabel.show();
+        break;
+      case "Автотранспортом":
+        deliveryInfoBlock.hide();
+        stationLabel.hide();
+        addressLabel.show();
+        break;
     }
+  }
+
+  var goodsMenu = document.querySelector(".goods__menu");
+  var goodsSections = document.querySelector(".goods__sections");
+  var lastGoodsTable = goodsSections.querySelector(".goods__table:last-of-type");
+  document.body.onscroll = function (e) {
+    console.log(goodsMenu.getBoundingClientRect().top);
+    if (goodsMenu.getBoundingClientRect().top < 60
+        && !goodsMenu.classList.contains("goods__menu--fixed")) {
+      console.log(1);
+      goodsMenu.classList.add("goods__menu--fixed");
+    } else if ((getCoords(goodsMenu).top + goodsMenu.offsetHeight >= getCoords(lastGoodsTable).top + lastGoodsTable.offsetHeight
+                || getCoords(goodsMenu).top <= getCoords(goodsSections).top)
+                && goodsMenu.classList.contains("goods__menu--fixed")) {
+      console.log(2);
+      goodsMenu.classList.remove("goods__menu--fixed");
+    }
+  }
+
+  function getCoords(elem) { // кроме IE8-
+  var box = elem.getBoundingClientRect();
+
+  return {
+      top: box.top + pageYOffset,
+      left: box.left + pageXOffset
+    };
   }
 })();

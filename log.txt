@@ -1,1 +1,1 @@
-<MultiValueDict: {u'documents': [<InMemoryUploadedFile: a.sh (application/x-shellscript)>]}>
+{'first_name': u'jhs', 'last_name': u'kjsd', 'delivery_type': u'\u0416\u0435\u043b\u0435\u0437\u043d\u043e\u0439 \u0434\u043e\u0440\u043e\u0433\u043e\u0439', 'patronym': u'kujsd', 'station': u'35534', 'address': u'', 'message': u'sds', 'documents': <InMemoryUploadedFile: b.sh (application/x-shellscript)>}
