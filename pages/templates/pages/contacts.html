@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>SnabService - контакты</title>
+  <link rel="shortcut icon" href="/static/pages/img/favicon.png" type="image/png">
+  <title>СнабСервис - контакты</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Play&subset=latin,cyrillic">
   <link rel="stylesheet" href="/static/pages/css/style.css">
 </head>
@@ -13,7 +13,7 @@
     <div class="container">
       <nav class="clearfix">
         <div class="logo">
-          <img src="/static/pages/img/logo__header--snabservice.svg" width="175" height="45" alt="CнабСервис. Трейдинговая компания.">
+          <img src="/static/pages/img/logo__header--snabservice.svg" width="137" height="35" alt="CнабСервис. Трейдинговая компания.">
         </div>
         <ul class="menu">
           <li class="menu__item">
@@ -93,23 +93,23 @@
     <section class="form-section form-section--callback" id="callback">
       <div class="container">
         <h2 class="form-section__title">Форма обратной связи</h2>
-        <form class="form-section__form form-section__form--callback" action="/contacts_action/" method="POST">
+        <form class="form-section__form form-section__form--callback" action="/contacts/" method="POST">
           {% csrf_token %}
-          <label class="form__label form__label--first-name" for="name">
+          <label class="form__label form__label--first-name {% if form.name.errors %}form__label--invalid{% endif %}" for="name">
             <span class="form__text form__text--first-name">Имя *</span>
-            <input class="form__input" id="name" type="text">
+            <input class="form__input" id="name" name="name" type="text">
           </label>
-          <label class="form__label form__label--phone" for="phone">
+          <label class="form__label form__label--phone {% if form.phone.errors %}form__label--invalid{% endif %}" for="phone">
             <span class="form__text form__text--phone">Телефон</span>
-            <input class="form__input" id="phone" type="text">
+            <input class="form__input" id="phone" name="phone" type="text">
           </label>
-          <label class="form__label form__label--email" for="email">
+          <label class="form__label form__label--email {% if form.email.errors %}form__label--invalid{% endif %}" for="email">
             <span class="form__text form__text--email">E-mail *</span>
-            <input class="form__input" id="email" type="email">
+            <input class="form__input" id="email" name="email" type="email">
           </label>
-          <label class="form__label form__label--message" for="message">
+          <label class="form__label form__label--message {% if form.message.errors %}form__label--invalid{% endif %}" for="message">
             <span class="form__text form__text--message">Сообщение</span>
-            <textarea class="form__input" id="message" rows="5"></textarea>
+            <textarea class="form__input" id="message" name="message" rows="5"></textarea>
           </label>
           <input class="btn btn--callback" type="submit" value="Отправить">
         </form>
@@ -131,13 +131,13 @@
         </ul>
         <ul class="contacts__list contacts__list--links">
           <li class="contacts__item contacts__item--links">
-            <a class="contacts__link" href="/contacts/" target="blank_">Реквизиты ООО “СнабСервис”</a>
+            <a class="contacts__link" href="/static/pages/img/doc__footer--requisites.pdf" target="blank_">Реквизиты ООО “СнабСервис”</a>
           </li>
           <li class="contacts__item contacts__item--links">
             <a class="contacts__link" href="/static/pages/img/doc__footer--license.pdf" target="blank_">Лицензия ООО “СнабСервис”</a>
           </li>
           <li class="contacts__item contacts__item--links">
-            <a class="contacts__link" href="/static/pages/img/doc__footer--card-of-organization.pdf" target="blank_">Договор на поставку сырья</a>
+            <a class="contacts__link" href="/static/pages/img/doc__footer--contract.docx" target="blank_">Договор на поставку сырья</a>
           </li>
         </ul>
       </div>

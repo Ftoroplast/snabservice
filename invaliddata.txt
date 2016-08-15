@@ -1,0 +1,16 @@
+<tr><td colspan="2"><ul class="errorlist nonfield"><li>Укажите способ доставки</li></ul></td></tr>
+<tr><th><label for="id_last_name">Last name:</label></th><td><ul class="errorlist"><li>This field is required.</li></ul><input id="id_last_name" maxlength="30" name="last_name" type="text" /></td></tr>
+<tr><th><label for="id_first_name">First name:</label></th><td><ul class="errorlist"><li>This field is required.</li></ul><input id="id_first_name" maxlength="30" name="first_name" type="text" /></td></tr>
+<tr><th><label for="id_patronym">Patronym:</label></th><td><ul class="errorlist"><li>This field is required.</li></ul><input id="id_patronym" maxlength="30" name="patronym" type="text" /></td></tr>
+<tr><th><label for="id_delivery_type">Delivery type:</label></th><td><ul class="errorlist"><li>This field is required.</li></ul><select id="id_delivery_type" name="delivery_type">
+<option value="Самовывозом">Самовывозом</option>
+<option value="Железной дорогой">Железной дорогой</option>
+<option value="Автотранспортом">Автотранспортом</option>
+</select></td></tr>
+<tr><th><label for="id_station">Station:</label></th><td><input id="id_station" maxlength="30" name="station" type="text" /></td></tr>
+<tr><th><label for="id_address">Address:</label></th><td><textarea cols="40" id="id_address" maxlength="100" name="address" rows="10">
+</textarea></td></tr>
+<tr><th><label for="id_message">Message:</label></th><td><textarea cols="40" id="id_message" maxlength="200" name="message" rows="10">
+</textarea></td></tr>
+<tr><th><label for="id_document1">Document1:</label></th><td><input id="id_document1" name="document1" type="file" /></td></tr>
+<tr><th><label for="id_document2">Document2:</label></th><td><input id="id_document2" name="document2" type="file" /></td></tr>
